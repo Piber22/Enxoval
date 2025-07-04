@@ -151,13 +151,13 @@ window.addEventListener('load', () => {
       if (radio.checked) {
         switch (radio.value) {
           case 'lencois':
-            tituloTabela.textContent = 'Tabela de dados - Lençóis';
+            tituloTabela.textContent = 'Lençóis - registros';
             break;
           case 'cobertores':
-            tituloTabela.textContent = 'Tabela de dados - Cobertores';
+            tituloTabela.textContent = 'Cobertores - registros';
             break;
           case 'enxoval':
-            tituloTabela.textContent = 'Tabela de dados - Enxoval';
+            tituloTabela.textContent = 'Enxoval total - registros';
             break;
         }
 
