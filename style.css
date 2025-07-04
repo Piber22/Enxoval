@@ -51,13 +51,15 @@ header h1 {
 }
 
 main {
-  margin-left: 200px;
-  margin-right: 200px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
   position: relative; /* Necessário para posicionar .fundo dentro */
 }
 .conteudo {
   display: flex;
+  flex-wrap: wrap;
   position: relative;
   gap: 20px;
   align-items: flex-start;
@@ -73,6 +75,7 @@ main {
 .relatorio {
   text-align: center;
   height: auto;
+  width-min: 200px;
   flex: 1;
   background-color: #201F20;
   padding: 20px;
@@ -265,16 +268,55 @@ input[type="radio"]:checked + .toggle-btn {
     background-color: #201F20 !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+    zoom
   }
 
   .exportar-relatorio,
   .btn-group,
-
   main {
     margin: 0;
     padding-left: 50px;
     padding-right: 50px;
     padding-bottom: 50px;
+  }
+  .exportar-relatorio,
+  .relatorio {
+     display: none;
+  }
+
+  .filtros select {
+    padding: 1px;
+  }
+
+  #anoSelect {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  #mesSelect {
+    margin-left: 10px;
+  }
+  .fechamento {
+  text-align: center;
+  height: auto;
+  flex: 1;
+  background-color: #201F20;
+  padding: 20px;
+  padding-left: 20px; /*  */
+  padding-right: 20px; /*  */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  transition: height 0.3s ease;
+  }
+  .fechamento table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+    font-size: 14px;
+  }
+
+  .fechamento td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #444;
   }
 
   @page {
