@@ -15,6 +15,7 @@ body {
 }
 
 header {
+  width: 100%;
   background-color: #201F20;
   padding: 20px;
   box-shadow: 0px 2px 10px rgba(0,0,0,0.9);
@@ -31,6 +32,7 @@ header h1 {
 }
 
 .header-content {
+  width: 100%;
   position: relative;
   display: flex;
   align-items: center;
@@ -322,5 +324,74 @@ input[type="radio"]:checked + .toggle-btn {
   @page {
     size: A4 portrait;
     margin: 10mm;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  main {
+    padding: 10px;
+  }
+
+  .conteudo {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .coluna-esquerda,
+  .dados {
+    width: 100%;
+  }
+
+  .logo {
+    left: 10px;
+    height: 30px;
+  }
+
+  .topo-img {
+    right: 10px;
+    height: 50px;
+  }
+
+  .header-content {
+    padding: 10px;
+    flex-direction: column;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .toggle-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .exportar-relatorio button {
+    padding: 8px 16px;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  .fechamento,
+  .relatorio,
+  .filtros,
+  .exportar-relatorio {
+    padding: 16px;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  #excelData table {
+    font-size: 11px;
+  }
+
+  #tituloTabela {
+    font-size: 1.2rem;
   }
 }
