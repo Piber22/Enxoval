@@ -1,445 +1,258 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#fdf6f0" />
-  <title>15 Anos de Beatriz 🐇✨</title>
-  <link rel="stylesheet" href="style.css" />
-  <!-- QR Code library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-</head>
-<body>
-
-<!-- ══════════════════════════════════
-     ENVELOPE INTRO SCREEN
-══════════════════════════════════ -->
-<div id="envelope-screen">
-
-  <div class="floating-particles"></div>
-
-  <div class="envelope-wrapper" role="button" aria-label="Abrir convite">
-
-    <!-- Letter inside -->
-    <div class="envelope-letter">
-      <span class="letter-rose">🌹</span>
-      <div class="letter-lines">
-        <div class="letter-line"></div>
-        <div class="letter-line"></div>
-        <div class="letter-line"></div>
-        <div class="letter-line"></div>
-      </div>
-    </div>
-
-    <!-- Envelope body -->
-    <div class="envelope-body"></div>
-
-    <!-- Side triangles illusion -->
-    <div class="envelope-sides"></div>
-
-    <!-- Flap -->
-    <div class="envelope-flap">
-      <div class="envelope-flap-front"></div>
-      <div class="envelope-flap-back"></div>
-    </div>
-
-    <!-- Wax seal -->
-    <div class="envelope-wax">
-      <div class="wax-circle">🐇</div>
-    </div>
-
-  </div>
-
-  <p class="envelope-label">toque para abrir</p>
-</div>
-
-
-<!-- ══════════════════════════════════
-     MAIN CONTENT
-══════════════════════════════════ -->
-<div id="main-content">
-
-  <!-- ▸ HERO ─────────────────────── -->
-  <section class="hero">
-    <div class="hero-border"></div>
-
-    <!-- Corner ornaments -->
-    <div class="corner-ornament tl">
-      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M2 2 L38 2 L2 38" stroke="#c9a96e" stroke-width="1"/>
-        <path d="M2 12 L12 2" stroke="#c9a96e" stroke-width="0.8"/>
-        <path d="M2 22 L22 2" stroke="#c9a96e" stroke-width="0.5"/>
-        <circle cx="2" cy="2" r="2" fill="#c9a96e"/>
-        <circle cx="38" cy="2" r="1.5" fill="#c8667a"/>
-        <circle cx="2" cy="38" r="1.5" fill="#c8667a"/>
-      </svg>
-    </div>
-    <div class="corner-ornament tr">
-      <svg viewBox="0 0 40 40" fill="none">
-        <path d="M2 2 L38 2 L2 38" stroke="#c9a96e" stroke-width="1"/>
-        <path d="M2 12 L12 2" stroke="#c9a96e" stroke-width="0.8"/>
-        <path d="M2 22 L22 2" stroke="#c9a96e" stroke-width="0.5"/>
-        <circle cx="2" cy="2" r="2" fill="#c9a96e"/>
-        <circle cx="38" cy="2" r="1.5" fill="#c8667a"/>
-        <circle cx="2" cy="38" r="1.5" fill="#c8667a"/>
-      </svg>
-    </div>
-    <div class="corner-ornament bl">
-      <svg viewBox="0 0 40 40" fill="none">
-        <path d="M2 2 L38 2 L2 38" stroke="#c9a96e" stroke-width="1"/>
-        <path d="M2 12 L12 2" stroke="#c9a96e" stroke-width="0.8"/>
-        <path d="M2 22 L22 2" stroke="#c9a96e" stroke-width="0.5"/>
-        <circle cx="2" cy="2" r="2" fill="#c9a96e"/>
-        <circle cx="38" cy="2" r="1.5" fill="#c8667a"/>
-        <circle cx="2" cy="38" r="1.5" fill="#c8667a"/>
-      </svg>
-    </div>
-    <div class="corner-ornament br">
-      <svg viewBox="0 0 40 40" fill="none">
-        <path d="M2 2 L38 2 L2 38" stroke="#c9a96e" stroke-width="1"/>
-        <path d="M2 12 L12 2" stroke="#c9a96e" stroke-width="0.8"/>
-        <path d="M2 22 L22 2" stroke="#c9a96e" stroke-width="0.5"/>
-        <circle cx="2" cy="2" r="2" fill="#c9a96e"/>
-        <circle cx="38" cy="2" r="1.5" fill="#c8667a"/>
-        <circle cx="2" cy="38" r="1.5" fill="#c8667a"/>
-      </svg>
-    </div>
-
-    <span class="hero-eyebrow">Um país mágico te convida</span>
-    <span class="hero-rabbit">🐇</span>
-
-    <h2 class="hero-title">Os 15 anos de</h2>
-    <h1 class="hero-name">Beatriz</h1>
-
-    <div class="hero-number" data-text="15">15</div>
-
-    <div class="hero-divider"></div>
-
-    <div class="hero-date-block">
-      <p class="hero-date">Sábado, 28 de Junho de 2025</p>
-      <p class="hero-time">⏰ &nbsp;19h00 · Portões abrem às 18h30</p>
-    </div>
-
-    <blockquote class="hero-quote">
-      Ela sempre acreditou em coisas impossíveis<br>antes do café da manhã.
-    </blockquote>
-
-    <div class="scroll-hint">
-      <span>deslize</span>
-      <div class="scroll-line"></div>
-    </div>
-  </section>
-
-
-  <!-- ▸ EVENT INFO ─────────────────── -->
-  <section class="section event-info">
-    <span class="section-tag reveal">onde e quando</span>
-    <h2 class="section-title reveal">O Baile das Maravilhas</h2>
-    <div class="section-rule reveal"></div>
-
-    <div class="info-cards">
-      <div class="info-card reveal">
-        <span class="info-icon">🗓️</span>
-        <div class="info-text">
-          <strong>Data</strong>
-          <span>Sábado, 28 de Junho de 2025</span>
-        </div>
-      </div>
-      <div class="info-card reveal">
-        <span class="info-icon">⏰</span>
-        <div class="info-text">
-          <strong>Horário</strong>
-          <span>19h00 — Madrugada (portões às 18h30)</span>
-        </div>
-      </div>
-      <div class="info-card reveal">
-        <span class="info-icon">📍</span>
-        <div class="info-text">
-          <strong>Local</strong>
-          <span>Rua Beco dos Soares, 3085<br>Vila Augusta — Viamão, RS</span>
-        </div>
-      </div>
-      <div class="info-card reveal">
-        <span class="info-icon">👗</span>
-        <div class="info-text">
-          <strong>Traje</strong>
-          <span>Esporte fino — venha encantada!</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ▸ ALICE QUOTE ─────────────────── -->
-  <section class="section story">
-    <span class="section-tag reveal">uma mensagem especial</span>
-    <h2 class="section-title reveal">Querida Convidada...</h2>
-    <div class="section-rule reveal"></div>
-
-    <div class="story-card reveal">
-      <p class="story-quote">
-        Às vezes acreditei em até <strong>seis coisas impossíveis</strong> antes do café da manhã —
-        e hoje, depois de 15 anos, sei que cada sonho impossível que tive me trouxe até aqui.
-        <br><br>
-        Quero que essa noite seja mágica, cheia de risos, música e memórias que durem para sempre.
-        <br><br>
-        Você foi convidada para <strong>entrar comigo no País das Maravilhas</strong>.
-        <br><br>
-        Com amor,<br><strong>Beatriz</strong> 🌹
-      </p>
-      <p class="story-attribution">✦ &nbsp;Alice no País das Maravilhas &nbsp;✦</p>
-    </div>
-  </section>
-
-
-  <!-- ▸ ACTION BUTTONS ─────────────── -->
-  <section class="section actions">
-    <span class="section-tag reveal">sua participação</span>
-    <h2 class="section-title reveal">Para a sua visita</h2>
-    <div class="section-rule reveal"></div>
-
-    <div class="btn-grid">
-
-      <!-- CONFIRM PRESENCE -->
-      <a id="btn-confirm"
-         href="https://wa.me/5551992906115?text=Conta%20comigo%2C%20eu%20confirmo%20minha%20presen%C3%A7a!"
-         target="_blank"
-         rel="noopener"
-         class="btn-alice btn-confirm reveal">
-        <div class="btn-shimmer"></div>
-        <span class="btn-icon">💌</span>
-        Confirmar Presença
-      </a>
-
-      <!-- LOCATION -->
-      <a href="https://www.google.com/maps/place/Rua+Beco+dos+Soares,+3085+-+Vila+Augusta,+Viam%C3%A3o+-+RS,+94510-270/@-30.0671429,-51.0782731,17z/data=!3m1!4b1!4m5!3m4!1s0x95199e8ab8bec4b5:0xfc35152a8ef67a38!8m2!3d-30.0671476!4d-51.0756982?entry=ttu&g_ep=EgoyMDI2MDMwNS4wIKXMDSoASAFQAw%3D%3D"
-         target="_blank"
-         rel="noopener"
-         class="btn-alice btn-location reveal">
-        <span class="btn-icon">📍</span>
-        Ver Localização
-      </a>
-
-      <!-- PIX -->
-      <button id="btn-pix" class="btn-alice btn-pix reveal" type="button">
-        <div class="btn-shimmer"></div>
-        <span class="btn-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2L6.5 7.5 9 10H6l-4 4 4 4h3l-2.5 2.5L12 22l5.5-5.5L15 14h3l4-4-4-4h-3l2.5-2.5L12 2Z" opacity="0.9"/>
-            <path d="M10 10l2-2 2 2-2 2-2-2Z" fill="rgba(255,255,255,0.5)"/>
-          </svg>
-        </span>
-        Presentear via Pix
-      </button>
-
-      <!-- GIFTS -->
-      <button id="btn-gifts" class="btn-alice btn-gifts reveal" type="button">
-        <div class="btn-shimmer"></div>
-        <span class="btn-icon">🎁</span>
-        Lista de Presentes
-      </button>
-
-    </div>
-  </section>
-
-
-  <!-- ▸ GUEST MANUAL ─────────────────── -->
-  <section class="section manual">
-    <span class="section-tag reveal">guia do País das Maravilhas</span>
-    <h2 class="section-title reveal">Manual da Convidada</h2>
-    <div class="section-rule reveal"></div>
-
-    <div class="manual-card reveal">
-
-      <div class="manual-header">
-        <span class="manual-header-emoji">🐇</span>
-        <p class="manual-header-title">Instruções para a Convidada Especial</p>
-      </div>
-
-      <div class="manual-items">
-
-        <div class="manual-item">
-          <div class="manual-item-icon">📅</div>
-          <div class="manual-item-text">
-            <strong>Confirme sua presença</strong>
-            <p>Confirme até o dia 15 de Junho para que possamos preparar tudo com carinho para você.</p>
-          </div>
-        </div>
-
-        <div class="manual-item">
-          <div class="manual-item-icon">👗</div>
-          <div class="manual-item-text">
-            <strong>Traje</strong>
-            <p>Esporte fino. Se quiser entrar no espírito de Alice, fique à vontade — adoraremos!</p>
-          </div>
-        </div>
-
-        <div class="manual-item">
-          <div class="manual-item-icon">📸</div>
-          <div class="manual-item-text">
-            <strong>Tire muitas fotos!</strong>
-            <p>Capture cada momento mágico — espaço instagramável? Muito! Carregue seu celular antes.</p>
-          </div>
-        </div>
-
-        <div class="manual-item">
-          <div class="manual-item-icon">⏰</div>
-          <div class="manual-item-text">
-            <strong>Pontualidade é magia</strong>
-            <p>Os portões abrem às 18h30. Não perca a entrada da debutante às 19h em ponto!</p>
-          </div>
-        </div>
-
-        <div class="manual-item">
-          <div class="manual-item-icon">🚗</div>
-          <div class="manual-item-text">
-            <strong>Estacionamento</strong>
-            <p>Há vagas nas ruas próximas. Indique para o motorista o endereço e chegue com tranquilidade.</p>
-          </div>
-        </div>
-
-        <div class="manual-item">
-          <div class="manual-item-icon">🎉</div>
-          <div class="manual-item-text">
-            <strong>Divirta-se muito!</strong>
-            <p>Dance, sorria, cante e celebre — essa noite foi feita para ser inesquecível.</p>
-          </div>
-        </div>
-
-        <div class="manual-item">
-          <div class="manual-item-icon">💌</div>
-          <div class="manual-item-text">
-            <strong>Deixe seu carinho</strong>
-            <p>Teremos um espaço especial para mensagens escritas à mão para a aniversariante.</p>
-          </div>
-        </div>
-
-        <div class="manual-item">
-          <div class="manual-item-icon">🍰</div>
-          <div class="manual-item-text">
-            <strong>Buffet completo</strong>
-            <p>Jantar, sobremesas temáticas e bolo de debutante aguardam você. Venha com apetite!</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ▸ THANKS ─────────────────────── -->
-  <footer class="thanks">
-    <div class="thanks-stars"></div>
-
-    <span class="thanks-emoji">🌹</span>
-
-    <h2 class="thanks-title">Obrigada por fazer</h2>
-    <p class="thanks-name">este sonho real</p>
-
-    <div class="thanks-rule"></div>
-
-    <p class="thanks-message">
-      Cada presença aqui é um capítulo da história mais bonita da minha vida.
-      Vocês são a minha Wonderland — o lugar onde tudo faz sentido, mesmo quando o mundo parece de cabeça pra baixo.
-      <br><br>
-      Com todo o meu amor,
-    </p>
-
-    <p class="thanks-signature">✦ &nbsp; Beatriz &nbsp; ✦</p>
-
-    <p class="thanks-hearts">🌸 🐇 ✨ 🌹 🫧</p>
-  </footer>
-
-</div><!-- /#main-content -->
-
-
-<!-- ══════════════════════════════════
-     PIX MODAL
-══════════════════════════════════ -->
-<div class="modal-overlay" id="modal-pix" role="dialog" aria-label="Chave Pix">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <button id="close-pix" style="position:absolute;top:20px;right:24px;background:none;border:none;font-size:24px;color:#5a3d5c;cursor:pointer;line-height:1;" aria-label="Fechar">×</button>
-
-    <h3 class="modal-title">Presentear com Pix</h3>
-    <p class="modal-sub">Que gentileza! Sua generosidade é muito especial 🌸</p>
-
-    <div class="qr-frame">
-      <canvas id="qr-canvas"></canvas>
-    </div>
-
-    <p class="pix-key">Chave Pix: <strong>(51) 99290-6115</strong></p>
-
-    <button class="copy-btn" id="copy-pix" type="button">Copiar chave Pix</button>
-  </div>
-</div>
-
-
-<!-- ══════════════════════════════════
-     GIFTS MODAL
-══════════════════════════════════ -->
-<div class="modal-overlay" id="modal-gifts" role="dialog" aria-label="Lista de presentes">
-  <div class="modal-sheet">
-    <div class="modal-handle"></div>
-    <button id="close-gifts" style="position:absolute;top:20px;right:24px;background:none;border:none;font-size:24px;color:#5a3d5c;cursor:pointer;line-height:1;" aria-label="Fechar">×</button>
-
-    <h3 class="modal-title">Lista de Presentes</h3>
-    <p class="modal-sub" style="margin-bottom:8px;">Sugestões com muito carinho 🎀</p>
-
-    <div class="gifts-grid">
-
-      <div class="gift-item">
-        <span class="gift-emoji">👜</span>
-        <span class="gift-name">Bolsa feminina</span>
-        <span class="gift-desc">Estilo e elegância para o dia a dia</span>
-      </div>
-
-      <div class="gift-item">
-        <span class="gift-emoji">💄</span>
-        <span class="gift-name">Kit de maquiagem</span>
-        <span class="gift-desc">Paleta de sombras ou batom</span>
-      </div>
-
-      <div class="gift-item">
-        <span class="gift-emoji">📚</span>
-        <span class="gift-name">Livros</span>
-        <span class="gift-desc">Romances, fantasia ou autoconhecimento</span>
-      </div>
-
-      <div class="gift-item">
-        <span class="gift-emoji">🌸</span>
-        <span class="gift-name">Perfume</span>
-        <span class="gift-desc">Fragrância floral ou frutada</span>
-      </div>
-
-      <div class="gift-item">
-        <span class="gift-emoji">💅</span>
-        <span class="gift-name">Spa day</span>
-        <span class="gift-desc">Vale presente de salão ou spa</span>
-      </div>
-
-      <div class="gift-item">
-        <span class="gift-emoji">💍</span>
-        <span class="gift-name">Bijuterias</span>
-        <span class="gift-desc">Brincos, colares e anéis delicados</span>
-      </div>
-
-      <div class="gift-item">
-        <span class="gift-emoji">👟</span>
-        <span class="gift-name">Tênis / Sandália</span>
-        <span class="gift-desc">Números 37 (favor confirmar)</span>
-      </div>
-
-      <div class="gift-item">
-        <span class="gift-emoji">🎀</span>
-        <span class="gift-name">Surpresa!</span>
-        <span class="gift-desc">Qualquer presente dado com amor</span>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<script src="script.js"></script>
-</body>
-</html>
+/* ═══════════════════════════════════
+   ALICE IN WONDERLAND INVITATION JS
+═══════════════════════════════════ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ─── Particles on envelope screen ───
+  const container = document.querySelector('.floating-particles');
+  const colors = ['#c8667a', '#5b9ea0', '#c9a96e', '#a880d0', '#f5a0b8'];
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `
+      left: ${Math.random() * 100}%;
+      background: ${colors[Math.floor(Math.random() * colors.length)]};
+      width: ${4 + Math.random() * 6}px;
+      height: ${4 + Math.random() * 6}px;
+      --dur: ${4 + Math.random() * 6}s;
+      --delay: ${Math.random() * 4}s;
+    `;
+    container.appendChild(p);
+  }
+
+  // ─── Envelope open sequence ───
+  const envelope = document.querySelector('.envelope-wrapper');
+  const envelopeScreen = document.getElementById('envelope-screen');
+  const mainContent = document.getElementById('main-content');
+  let opened = false;
+
+  function openEnvelope() {
+    if (opened) return;
+    opened = true;
+
+    envelope.classList.add('opening');
+
+    setTimeout(() => {
+      envelopeScreen.style.transition = 'opacity 1.2s ease';
+      envelopeScreen.style.opacity = '0';
+      mainContent.classList.add('visible');
+    }, 1800);
+
+    setTimeout(() => {
+      envelopeScreen.style.display = 'none';
+      fireConfetti();
+    }, 3000);
+  }
+
+  envelope.addEventListener('click', openEnvelope);
+  envelope.addEventListener('touchstart', openEnvelope, { passive: true });
+
+  // Auto-open after 4s if user doesn't tap
+  setTimeout(() => { if (!opened) openEnvelope(); }, 4000);
+
+  // ─── Confetti ───
+  function fireConfetti() {
+    const colors = ['#c8667a', '#5b9ea0', '#c9a96e', '#a880d0', '#f5a0b8', '#e8d5b0', '#5b9ea0'];
+    for (let i = 0; i < 60; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'confetti-piece';
+      const isHeart = Math.random() > 0.6;
+      if (isHeart) {
+        piece.style.width = '12px';
+        piece.style.height = '12px';
+        piece.style.borderRadius = '0';
+        piece.innerHTML = ['🌸', '🌷', '✨', '🫧', '🌺'][Math.floor(Math.random() * 5)];
+        piece.style.background = 'none';
+        piece.style.fontSize = '14px';
+      }
+      piece.style.cssText += `
+        left: ${Math.random() * 100}vw;
+        top: -10px;
+        background: ${isHeart ? 'none' : colors[Math.floor(Math.random() * colors.length)]};
+        --dur: ${2 + Math.random() * 3}s;
+        --delay: ${Math.random() * 2}s;
+        --drift: ${(Math.random() - 0.5) * 200}px;
+      `;
+      document.body.appendChild(piece);
+      setTimeout(() => piece.remove(), 6000);
+    }
+  }
+
+  // ─── Scroll reveal ───
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // ─── Staggered reveals for info cards ───
+  document.querySelectorAll('.info-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 0.12}s`;
+  });
+  document.querySelectorAll('.manual-item').forEach((item, i) => {
+    item.classList.add('reveal');
+    item.style.transitionDelay = `${i * 0.1}s`;
+    revealObserver.observe(item);
+  });
+
+  // ─── PIX Modal ───
+  const pixBtn = document.getElementById('btn-pix');
+  const pixModal = document.getElementById('modal-pix');
+  const pixClose = document.getElementById('close-pix');
+  const copyBtn = document.getElementById('copy-pix');
+
+  pixBtn.addEventListener('click', () => {
+    document.body.classList.add('modal-open');
+    pixModal.classList.add('open');
+    generateQR();
+  });
+
+  pixClose.addEventListener('click', closePixModal);
+  pixModal.addEventListener('click', (e) => {
+    if (e.target === pixModal) closePixModal();
+  });
+
+  function closePixModal() {
+    pixModal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+  }
+
+  let qrGenerated = false;
+  function generateQR() {
+    if (qrGenerated) return;
+    qrGenerated = true;
+    const canvas = document.getElementById('qr-canvas');
+    if (window.QRCode) {
+      QRCode.toCanvas(canvas, '00020126360014BR.GOV.BCB.PIX0114+5551999999992204Presente5204000053039865406100.005802BR5913Isabela Festa6009SAO PAULO62070503***6304ABCD', {
+        width: 180,
+        margin: 1,
+        color: { dark: '#2d1a2e', light: '#fffdf8' }
+      }, () => {});
+    } else {
+      // Fallback visual QR placeholder
+      drawPlaceholderQR(canvas);
+    }
+  }
+
+  function drawPlaceholderQR(canvas) {
+    canvas.width = 180;
+    canvas.height = 180;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#fffdf8';
+    ctx.fillRect(0, 0, 180, 180);
+    // Draw a simple QR-like pattern
+    ctx.fillStyle = '#2d1a2e';
+    const size = 9;
+    const pattern = [
+      [1,1,1,1,1,1,1,0,1,0,1,0,0,0,1,1,1,1,1,1,1],
+      [1,0,0,0,0,0,1,0,1,1,0,0,1,0,1,0,0,0,0,0,1],
+      [1,0,1,1,1,0,1,0,0,1,1,0,0,0,1,0,1,1,1,0,1],
+      [1,0,1,1,1,0,1,0,1,0,1,1,1,0,1,0,1,1,1,0,1],
+      [1,0,1,1,1,0,1,0,0,0,0,1,0,0,1,0,1,1,1,0,1],
+      [1,0,0,0,0,0,1,0,1,1,0,1,1,0,1,0,0,0,0,0,1],
+      [1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1],
+      [0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0],
+      [1,0,1,1,0,1,1,0,1,0,1,1,0,0,1,0,1,1,0,1,0],
+      [0,1,1,0,1,0,0,1,0,1,0,1,1,0,0,1,1,0,1,0,1],
+      [1,0,0,0,1,1,1,0,1,0,1,1,0,0,1,0,0,0,1,1,0],
+      [0,0,1,0,0,1,0,1,0,1,0,1,1,0,0,1,0,1,0,0,1],
+      [1,1,0,1,0,0,1,0,1,0,1,1,0,0,1,1,0,0,0,1,0],
+      [0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,1,0,1,0,0],
+      [1,1,1,1,1,1,1,0,0,1,1,0,1,0,1,0,1,1,1,0,1],
+      [1,0,0,0,0,0,1,0,1,0,0,1,0,0,0,1,1,0,0,1,0],
+      [1,0,1,1,1,0,1,0,0,1,1,1,1,0,1,0,0,0,1,0,1],
+      [1,0,1,1,1,0,1,0,1,0,0,1,0,0,0,1,0,1,0,0,0],
+      [1,0,1,1,1,0,1,0,0,1,1,1,1,0,1,1,1,0,1,1,1],
+      [1,0,0,0,0,0,1,0,1,0,0,1,0,0,0,0,1,1,0,0,0],
+      [1,1,1,1,1,1,1,0,0,1,1,0,1,0,1,0,0,0,1,1,0],
+    ];
+    pattern.forEach((row, r) => {
+      row.forEach((cell, c) => {
+        if (cell) ctx.fillRect(c * size, r * size, size - 1, size - 1);
+      });
+    });
+  }
+
+  copyBtn.addEventListener('click', () => {
+    const key = '(51) 99290-6115';
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(key).then(() => {
+        copyBtn.textContent = '✓ Chave copiada!';
+        setTimeout(() => copyBtn.textContent = 'Copiar chave Pix', 2000);
+      });
+    } else {
+      copyBtn.textContent = '✓ Chave copiada!';
+      setTimeout(() => copyBtn.textContent = 'Copiar chave Pix', 2000);
+    }
+  });
+
+  // ─── Gifts Modal ───
+  const giftsBtn = document.getElementById('btn-gifts');
+  const giftsModal = document.getElementById('modal-gifts');
+  const giftsClose = document.getElementById('close-gifts');
+
+  giftsBtn.addEventListener('click', () => {
+    document.body.classList.add('modal-open');
+    giftsModal.classList.add('open');
+  });
+  giftsClose.addEventListener('click', () => {
+    giftsModal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+  });
+  giftsModal.addEventListener('click', (e) => {
+    if (e.target === giftsModal) {
+      giftsModal.classList.remove('open');
+      document.body.classList.remove('modal-open');
+    }
+  });
+
+  // ─── Twinkling stars in thanks section ───
+  const starsContainer = document.querySelector('.thanks-stars');
+  if (starsContainer) {
+    for (let i = 0; i < 50; i++) {
+      const star = document.createElement('div');
+      star.className = 'thanks-star';
+      const op = 0.1 + Math.random() * 0.5;
+      star.style.cssText = `
+        left: ${Math.random() * 100}%;
+        top: ${Math.random() * 100}%;
+        width: ${1 + Math.random() * 3}px;
+        height: ${1 + Math.random() * 3}px;
+        --op: ${op};
+        --dur: ${2 + Math.random() * 4}s;
+        --delay: ${Math.random() * 3}s;
+      `;
+      starsContainer.appendChild(star);
+    }
+  }
+
+  // ─── Page decorations ───
+  const decoContainer = document.getElementById('main-content');
+  const decoEmojis = ['🐇', '🎂', '🌹', '⭐', '🎀', '🌸', '🫧', '🌺', '✨'];
+  decoEmojis.forEach((emoji, i) => {
+    const d = document.createElement('div');
+    d.className = 'page-decoration';
+    d.textContent = emoji;
+    d.style.cssText = `
+      top: ${10 + i * 12}%;
+      ${i % 2 === 0 ? 'left: 2%' : 'right: 2%'};
+      --dur: ${6 + i * 1.5}s;
+      --delay: ${i * 0.5}s;
+    `;
+    decoContainer.appendChild(d);
+  });
+
+  // ─── Heartbeat on confirm button ───
+  const confirmBtn = document.getElementById('btn-confirm');
+  setInterval(() => {
+    confirmBtn.style.transform = 'scale(1.03)';
+    setTimeout(() => confirmBtn.style.transform = 'scale(1)', 150);
+  }, 3000);
+
+});
