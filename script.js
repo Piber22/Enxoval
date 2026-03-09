@@ -1,227 +1,445 @@
-// script.js
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#fdf6f0" />
+  <title>15 Anos de Beatriz 🐇✨</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- QR Code library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
 
-window.addEventListener('load', () => {
-  let groupedData = {};
+<!-- ══════════════════════════════════
+     ENVELOPE INTRO SCREEN
+══════════════════════════════════ -->
+<div id="envelope-screen">
 
-  const anoSelect = document.getElementById('anoSelect');
-  const mesSelect = document.getElementById('mesSelect');
-  const excelDataDiv = document.getElementById('excelData');
-  const tituloTabela = document.getElementById('tituloTabela');
+  <div class="floating-particles"></div>
 
-  // Funções auxiliares
-  function excelDateToJSDate(serial) {
-    const utc_days = Math.floor(serial - 25569 + 1);
-    const utc_value = utc_days * 86400 * 1000;
-    return new Date(utc_value);
-  }
+  <div class="envelope-wrapper" role="button" aria-label="Abrir convite">
 
-  function formatDateBRFromDateObj(dateObj) {
-    const day = String(dateObj.getDate()).padStart(2, '0');
-    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-    const year = dateObj.getFullYear();
-    return `${day}/${month}/${year}`;
-  }
+    <!-- Letter inside -->
+    <div class="envelope-letter">
+      <span class="letter-rose">🌹</span>
+      <div class="letter-lines">
+        <div class="letter-line"></div>
+        <div class="letter-line"></div>
+        <div class="letter-line"></div>
+        <div class="letter-line"></div>
+      </div>
+    </div>
 
-  function sortDatesBR(a, b) {
-    const [dayA, monthA, yearA] = a.split('/');
-    const [dayB, monthB, yearB] = b.split('/');
-    const dateA = new Date(`${yearA}-${monthA}-${dayA}`);
-    const dateB = new Date(`${yearB}-${monthB}-${dayB}`);
-    return dateA - dateB;
-  }
+    <!-- Envelope body -->
+    <div class="envelope-body"></div>
 
-  function preencherAnos() {
-    const anos = new Set();
-    Object.keys(groupedData).forEach(dataStr => {
-      const ano = dataStr.split('/')[2];
-      anos.add(ano);
-    });
-    const anosOrdenados = Array.from(anos).sort();
-    anoSelect.innerHTML = '<option value="0">Todos</option>' +
-      anosOrdenados.map(a => `<option value="${a}">${a}</option>`).join('');
-  }
+    <!-- Side triangles illusion -->
+    <div class="envelope-sides"></div>
 
-  function filtrarEDesenharTabela() {
-    const anoFiltro = anoSelect.value;
-    const mesFiltro = parseInt(mesSelect.value);
+    <!-- Flap -->
+    <div class="envelope-flap">
+      <div class="envelope-flap-front"></div>
+      <div class="envelope-flap-back"></div>
+    </div>
 
-    let datasFiltradas = Object.keys(groupedData).filter(dataStr => {
-      const [day, month, year] = dataStr.split('/').map(x => parseInt(x));
-      if (anoFiltro != 0 && year != parseInt(anoFiltro)) return false;
-      if (mesFiltro !== 0 && month !== mesFiltro) return false;
-      return true;
-    });
+    <!-- Wax seal -->
+    <div class="envelope-wax">
+      <div class="wax-circle">🐇</div>
+    </div>
 
-    datasFiltradas.sort(sortDatesBR);
+  </div>
 
-    if (datasFiltradas.length === 0) {
-      excelDataDiv.innerHTML = '<p>Nenhum dado encontrado para o filtro selecionado.</p>';
-      atualizarFechamento(0, 0, 0, 0);
-      return;
-    }
+  <p class="envelope-label">toque para abrir</p>
+</div>
 
-    const primeiroDia = datasFiltradas[0];
-    const ultimoDia = datasFiltradas[datasFiltradas.length - 1];
 
-    let html = `<table>
-      <thead>
-        <tr>
-          <th>Data</th>
-          <th>Sujo (KG's)</th>
-          <th>Limpo (KG's)</th>
-          <th>Pendência c/ 10% (KG's)</th>
-        </tr>
-      </thead>
-      <tbody>`;
+<!-- ══════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════ -->
+<div id="main-content">
 
-    let totalSujo = 0;
-    let totalLimpo = 0;
-    let pendenciaTotalAcumulada = 0;
+  <!-- ▸ HERO ─────────────────────── -->
+  <section class="hero">
+    <div class="hero-border"></div>
 
-    for (let i = 0; i < datasFiltradas.length; i++) {
-      const dataAtual = datasFiltradas[i];
-      const sujoVal = groupedData[dataAtual]?.sujo || 0;
-      const limpoVal = groupedData[dataAtual]?.limpo || 0;
+    <!-- Corner ornaments -->
+    <div class="corner-ornament tl">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 2 L38 2 L2 38" stroke="#c9a96e" stroke-width="1"/>
+        <path d="M2 12 L12 2" stroke="#c9a96e" stroke-width="0.8"/>
+        <path d="M2 22 L22 2" stroke="#c9a96e" stroke-width="0.5"/>
+        <circle cx="2" cy="2" r="2" fill="#c9a96e"/>
+        <circle cx="38" cy="2" r="1.5" fill="#c8667a"/>
+        <circle cx="2" cy="38" r="1.5" fill="#c8667a"/>
+      </svg>
+    </div>
+    <div class="corner-ornament tr">
+      <svg viewBox="0 0 40 40" fill="none">
+        <path d="M2 2 L38 2 L2 38" stroke="#c9a96e" stroke-width="1"/>
+        <path d="M2 12 L12 2" stroke="#c9a96e" stroke-width="0.8"/>
+        <path d="M2 22 L22 2" stroke="#c9a96e" stroke-width="0.5"/>
+        <circle cx="2" cy="2" r="2" fill="#c9a96e"/>
+        <circle cx="38" cy="2" r="1.5" fill="#c8667a"/>
+        <circle cx="2" cy="38" r="1.5" fill="#c8667a"/>
+      </svg>
+    </div>
+    <div class="corner-ornament bl">
+      <svg viewBox="0 0 40 40" fill="none">
+        <path d="M2 2 L38 2 L2 38" stroke="#c9a96e" stroke-width="1"/>
+        <path d="M2 12 L12 2" stroke="#c9a96e" stroke-width="0.8"/>
+        <path d="M2 22 L22 2" stroke="#c9a96e" stroke-width="0.5"/>
+        <circle cx="2" cy="2" r="2" fill="#c9a96e"/>
+        <circle cx="38" cy="2" r="1.5" fill="#c8667a"/>
+        <circle cx="2" cy="38" r="1.5" fill="#c8667a"/>
+      </svg>
+    </div>
+    <div class="corner-ornament br">
+      <svg viewBox="0 0 40 40" fill="none">
+        <path d="M2 2 L38 2 L2 38" stroke="#c9a96e" stroke-width="1"/>
+        <path d="M2 12 L12 2" stroke="#c9a96e" stroke-width="0.8"/>
+        <path d="M2 22 L22 2" stroke="#c9a96e" stroke-width="0.5"/>
+        <circle cx="2" cy="2" r="2" fill="#c9a96e"/>
+        <circle cx="38" cy="2" r="1.5" fill="#c8667a"/>
+        <circle cx="2" cy="38" r="1.5" fill="#c8667a"/>
+      </svg>
+    </div>
 
-      let sujo = sujoVal > 0 ? sujoVal.toFixed(1).replace('.', ',') : '-';
-      let limpo = limpoVal > 0 ? limpoVal.toFixed(1).replace('.', ',') : '-';
-      let pendencia = '-';
+    <span class="hero-eyebrow">Um país mágico te convida</span>
+    <span class="hero-rabbit">🐇</span>
 
-      if (dataAtual === primeiroDia) {
-        limpo = '-';
-      } else if (dataAtual === ultimoDia) {
-        sujo = '-';
-      }
+    <h2 class="hero-title">Os 15 anos de</h2>
+    <h1 class="hero-name">Beatriz</h1>
 
-      if (i > 0) {
-        const diaAnterior = datasFiltradas[i - 1];
-        const sujoAnterior = groupedData[diaAnterior]?.sujo || 0;
-        const pendenciaCalc = limpoVal - sujoAnterior * 0.9;
-        pendencia = pendenciaCalc.toFixed(1).replace('.', ',');
-      }
+    <div class="hero-number" data-text="15">15</div>
 
-      html += `<tr>
-        <td>${dataAtual}</td>
-        <td>${sujo}</td>
-        <td>${limpo}</td>
-        <td>${pendencia}</td>
-      </tr>`;
+    <div class="hero-divider"></div>
 
-      if (sujo !== '-') totalSujo += sujoVal;
-      if (limpo !== '-') totalLimpo += limpoVal;
-      if (pendencia !== '-') pendenciaTotalAcumulada += parseFloat(pendencia.replace(',', '.'));
-    }
+    <div class="hero-date-block">
+      <p class="hero-date">Sábado, 28 de Junho de 2025</p>
+      <p class="hero-time">⏰ &nbsp;19h00 · Portões abrem às 18h30</p>
+    </div>
 
-    let pendenciaTotal = totalSujo - totalLimpo;
-    let pendenciaTotalExibida = -pendenciaTotal;
-    let pendenciaTotal10 = totalLimpo - totalSujo * 0.9;
+    <blockquote class="hero-quote">
+      Ela sempre acreditou em coisas impossíveis<br>antes do café da manhã.
+    </blockquote>
 
-    html += '</tbody></table>';
-    excelDataDiv.innerHTML = html;
+    <div class="scroll-hint">
+      <span>deslize</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
 
-    atualizarFechamento(totalSujo, totalLimpo, pendenciaTotalExibida, pendenciaTotal10);
-  }
 
-  function atualizarFechamento(sujo, limpo, pendencia, pendencia10) {
-    const formatarSemSinal = num => num.toFixed(1).replace('.', ',');
-    const formatarComSinal = num => {
-      const sinal = (num > 0) ? '+' : (num < 0) ? '-' : '';
-      return `${sinal}${Math.abs(num).toFixed(1).replace('.', ',')}`;
-    };
+  <!-- ▸ EVENT INFO ─────────────────── -->
+  <section class="section event-info">
+    <span class="section-tag reveal">onde e quando</span>
+    <h2 class="section-title reveal">O Baile das Maravilhas</h2>
+    <div class="section-rule reveal"></div>
 
-    document.getElementById('totalSujo').innerText = formatarSemSinal(sujo);
-    document.getElementById('totalLimpo').innerText = formatarSemSinal(limpo);
-    document.getElementById('pendenciaTotal').innerText = formatarComSinal(pendencia);
-    document.getElementById('pendenciaTotal10').innerText = formatarComSinal(pendencia10);
+    <div class="info-cards">
+      <div class="info-card reveal">
+        <span class="info-icon">🗓️</span>
+        <div class="info-text">
+          <strong>Data</strong>
+          <span>Sábado, 28 de Junho de 2025</span>
+        </div>
+      </div>
+      <div class="info-card reveal">
+        <span class="info-icon">⏰</span>
+        <div class="info-text">
+          <strong>Horário</strong>
+          <span>19h00 — Madrugada (portões às 18h30)</span>
+        </div>
+      </div>
+      <div class="info-card reveal">
+        <span class="info-icon">📍</span>
+        <div class="info-text">
+          <strong>Local</strong>
+          <span>Rua Beco dos Soares, 3085<br>Vila Augusta — Viamão, RS</span>
+        </div>
+      </div>
+      <div class="info-card reveal">
+        <span class="info-icon">👗</span>
+        <div class="info-text">
+          <strong>Traje</strong>
+          <span>Esporte fino — venha encantada!</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    const pendenciaElem = document.getElementById('pendenciaTotal');
-    const pendencia10Elem = document.getElementById('pendenciaTotal10');
 
-    pendenciaElem.style.color = pendencia > 0 ? 'green' : (pendencia < 0 ? 'red' : 'inherit');
-    pendencia10Elem.style.color = pendencia10 > 0 ? 'green' : (pendencia10 < 0 ? 'red' : 'inherit');
-  }
+  <!-- ▸ ALICE QUOTE ─────────────────── -->
+  <section class="section story">
+    <span class="section-tag reveal">uma mensagem especial</span>
+    <h2 class="section-title reveal">Querida Convidada...</h2>
+    <div class="section-rule reveal"></div>
 
-  anoSelect.addEventListener('change', filtrarEDesenharTabela);
-  mesSelect.addEventListener('change', filtrarEDesenharTabela);
+    <div class="story-card reveal">
+      <p class="story-quote">
+        Às vezes acreditei em até <strong>seis coisas impossíveis</strong> antes do café da manhã —
+        e hoje, depois de 15 anos, sei que cada sonho impossível que tive me trouxe até aqui.
+        <br><br>
+        Quero que essa noite seja mágica, cheia de risos, música e memórias que durem para sempre.
+        <br><br>
+        Você foi convidada para <strong>entrar comigo no País das Maravilhas</strong>.
+        <br><br>
+        Com amor,<br><strong>Beatriz</strong> 🌹
+      </p>
+      <p class="story-attribution">✦ &nbsp;Alice no País das Maravilhas &nbsp;✦</p>
+    </div>
+  </section>
 
-  // Listener para os radios do container Relatórios
-  const radiosRelatorio = document.querySelectorAll('input[name="relatorio"]');
-  radiosRelatorio.forEach(radio => {
-    radio.addEventListener('change', () => {
-      if (radio.checked) {
-        switch (radio.value) {
-          case 'lencois':
-            tituloTabela.textContent = 'Lençóis - registros';
-            break;
-          case 'cobertores':
-            tituloTabela.textContent = 'Cobertores - registros';
-            break;
-          case 'enxoval':
-            tituloTabela.textContent = 'Enxoval total - registros';
-            break;
-        }
 
-        // Futuro: aqui pode chamar função para carregar outra base, por exemplo:
-        // carregarDadosPorTipo(radio.value);
-      }
-    });
-  });
+  <!-- ▸ ACTION BUTTONS ─────────────── -->
+  <section class="section actions">
+    <span class="section-tag reveal">sua participação</span>
+    <h2 class="section-title reveal">Para a sua visita</h2>
+    <div class="section-rule reveal"></div>
 
-  fetch(`dados/dados.xlsx?v=${Date.now()}`)
-    .then(response => {
-      if (!response.ok) throw new Error("Arquivo Excel não encontrado");
-      return response.arrayBuffer();
-    })
-    .then(data => {
-      const workbook = XLSX.read(data, { type: 'array' });
-      const sheet = workbook.Sheets[workbook.SheetNames[0]];
-      const jsonData = XLSX.utils.sheet_to_json(sheet, { defval: '' });
+    <div class="btn-grid">
 
-      groupedData = {};
+      <!-- CONFIRM PRESENCE -->
+      <a id="btn-confirm"
+         href="https://wa.me/5551992906115?text=Conta%20comigo%2C%20eu%20confirmo%20minha%20presen%C3%A7a!"
+         target="_blank"
+         rel="noopener"
+         class="btn-alice btn-confirm reveal">
+        <div class="btn-shimmer"></div>
+        <span class="btn-icon">💌</span>
+        Confirmar Presença
+      </a>
 
-      jsonData.forEach(row => {
-        let dataRaw = row['DATA'];
-        let dataFormatada;
+      <!-- LOCATION -->
+      <a href="https://www.google.com/maps/place/Rua+Beco+dos+Soares,+3085+-+Vila+Augusta,+Viam%C3%A3o+-+RS,+94510-270/@-30.0671429,-51.0782731,17z/data=!3m1!4b1!4m5!3m4!1s0x95199e8ab8bec4b5:0xfc35152a8ef67a38!8m2!3d-30.0671476!4d-51.0756982?entry=ttu&g_ep=EgoyMDI2MDMwNS4wIKXMDSoASAFQAw%3D%3D"
+         target="_blank"
+         rel="noopener"
+         class="btn-alice btn-location reveal">
+        <span class="btn-icon">📍</span>
+        Ver Localização
+      </a>
 
-        if (typeof dataRaw === 'number') {
-          const dataObj = excelDateToJSDate(dataRaw);
-          dataFormatada = formatDateBRFromDateObj(dataObj);
-        } else {
-          dataFormatada = dataRaw;
-        }
+      <!-- PIX -->
+      <button id="btn-pix" class="btn-alice btn-pix reveal" type="button">
+        <div class="btn-shimmer"></div>
+        <span class="btn-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L6.5 7.5 9 10H6l-4 4 4 4h3l-2.5 2.5L12 22l5.5-5.5L15 14h3l4-4-4-4h-3l2.5-2.5L12 2Z" opacity="0.9"/>
+            <path d="M10 10l2-2 2 2-2 2-2-2Z" fill="rgba(255,255,255,0.5)"/>
+          </svg>
+        </span>
+        Presentear via Pix
+      </button>
 
-        const kg = parseFloat(row['KG TOTAL']) || 0;
-        const tipo = row['ENVIO OU RETORNO?'].toLowerCase();
+      <!-- GIFTS -->
+      <button id="btn-gifts" class="btn-alice btn-gifts reveal" type="button">
+        <div class="btn-shimmer"></div>
+        <span class="btn-icon">🎁</span>
+        Lista de Presentes
+      </button>
 
-        if (!groupedData[dataFormatada]) {
-          groupedData[dataFormatada] = { sujo: 0, limpo: 0 };
-        }
+    </div>
+  </section>
 
-        if (tipo.includes('enviado')) {
-          groupedData[dataFormatada].sujo += kg;
-        } else if (tipo.includes('recebido')) {
-          groupedData[dataFormatada].limpo += kg;
-        }
-      });
 
-      preencherAnos();
+  <!-- ▸ GUEST MANUAL ─────────────────── -->
+  <section class="section manual">
+    <span class="section-tag reveal">guia do País das Maravilhas</span>
+    <h2 class="section-title reveal">Manual da Convidada</h2>
+    <div class="section-rule reveal"></div>
 
-      const hoje = new Date();
-      const mesAtual = (hoje.getMonth() + 1).toString();
-      const anoAtual = hoje.getFullYear().toString();
+    <div class="manual-card reveal">
 
-      mesSelect.value = mesAtual;
-      anoSelect.value = anoAtual;
+      <div class="manual-header">
+        <span class="manual-header-emoji">🐇</span>
+        <p class="manual-header-title">Instruções para a Convidada Especial</p>
+      </div>
 
-      filtrarEDesenharTabela();
-    })
-    .catch(error => {
-      excelDataDiv.innerText = 'Erro ao carregar a planilha.';
-      console.error('Erro ao carregar Excel:', error);
-    });
+      <div class="manual-items">
 
-  // Exportar em PDF via window.print()
-  document.getElementById("btnExportarPDF").addEventListener("click", () => {
-    window.print();
-  });
-});
+        <div class="manual-item">
+          <div class="manual-item-icon">📅</div>
+          <div class="manual-item-text">
+            <strong>Confirme sua presença</strong>
+            <p>Confirme até o dia 15 de Junho para que possamos preparar tudo com carinho para você.</p>
+          </div>
+        </div>
+
+        <div class="manual-item">
+          <div class="manual-item-icon">👗</div>
+          <div class="manual-item-text">
+            <strong>Traje</strong>
+            <p>Esporte fino. Se quiser entrar no espírito de Alice, fique à vontade — adoraremos!</p>
+          </div>
+        </div>
+
+        <div class="manual-item">
+          <div class="manual-item-icon">📸</div>
+          <div class="manual-item-text">
+            <strong>Tire muitas fotos!</strong>
+            <p>Capture cada momento mágico — espaço instagramável? Muito! Carregue seu celular antes.</p>
+          </div>
+        </div>
+
+        <div class="manual-item">
+          <div class="manual-item-icon">⏰</div>
+          <div class="manual-item-text">
+            <strong>Pontualidade é magia</strong>
+            <p>Os portões abrem às 18h30. Não perca a entrada da debutante às 19h em ponto!</p>
+          </div>
+        </div>
+
+        <div class="manual-item">
+          <div class="manual-item-icon">🚗</div>
+          <div class="manual-item-text">
+            <strong>Estacionamento</strong>
+            <p>Há vagas nas ruas próximas. Indique para o motorista o endereço e chegue com tranquilidade.</p>
+          </div>
+        </div>
+
+        <div class="manual-item">
+          <div class="manual-item-icon">🎉</div>
+          <div class="manual-item-text">
+            <strong>Divirta-se muito!</strong>
+            <p>Dance, sorria, cante e celebre — essa noite foi feita para ser inesquecível.</p>
+          </div>
+        </div>
+
+        <div class="manual-item">
+          <div class="manual-item-icon">💌</div>
+          <div class="manual-item-text">
+            <strong>Deixe seu carinho</strong>
+            <p>Teremos um espaço especial para mensagens escritas à mão para a aniversariante.</p>
+          </div>
+        </div>
+
+        <div class="manual-item">
+          <div class="manual-item-icon">🍰</div>
+          <div class="manual-item-text">
+            <strong>Buffet completo</strong>
+            <p>Jantar, sobremesas temáticas e bolo de debutante aguardam você. Venha com apetite!</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ▸ THANKS ─────────────────────── -->
+  <footer class="thanks">
+    <div class="thanks-stars"></div>
+
+    <span class="thanks-emoji">🌹</span>
+
+    <h2 class="thanks-title">Obrigada por fazer</h2>
+    <p class="thanks-name">este sonho real</p>
+
+    <div class="thanks-rule"></div>
+
+    <p class="thanks-message">
+      Cada presença aqui é um capítulo da história mais bonita da minha vida.
+      Vocês são a minha Wonderland — o lugar onde tudo faz sentido, mesmo quando o mundo parece de cabeça pra baixo.
+      <br><br>
+      Com todo o meu amor,
+    </p>
+
+    <p class="thanks-signature">✦ &nbsp; Beatriz &nbsp; ✦</p>
+
+    <p class="thanks-hearts">🌸 🐇 ✨ 🌹 🫧</p>
+  </footer>
+
+</div><!-- /#main-content -->
+
+
+<!-- ══════════════════════════════════
+     PIX MODAL
+══════════════════════════════════ -->
+<div class="modal-overlay" id="modal-pix" role="dialog" aria-label="Chave Pix">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <button id="close-pix" style="position:absolute;top:20px;right:24px;background:none;border:none;font-size:24px;color:#5a3d5c;cursor:pointer;line-height:1;" aria-label="Fechar">×</button>
+
+    <h3 class="modal-title">Presentear com Pix</h3>
+    <p class="modal-sub">Que gentileza! Sua generosidade é muito especial 🌸</p>
+
+    <div class="qr-frame">
+      <canvas id="qr-canvas"></canvas>
+    </div>
+
+    <p class="pix-key">Chave Pix: <strong>(51) 99290-6115</strong></p>
+
+    <button class="copy-btn" id="copy-pix" type="button">Copiar chave Pix</button>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════
+     GIFTS MODAL
+══════════════════════════════════ -->
+<div class="modal-overlay" id="modal-gifts" role="dialog" aria-label="Lista de presentes">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <button id="close-gifts" style="position:absolute;top:20px;right:24px;background:none;border:none;font-size:24px;color:#5a3d5c;cursor:pointer;line-height:1;" aria-label="Fechar">×</button>
+
+    <h3 class="modal-title">Lista de Presentes</h3>
+    <p class="modal-sub" style="margin-bottom:8px;">Sugestões com muito carinho 🎀</p>
+
+    <div class="gifts-grid">
+
+      <div class="gift-item">
+        <span class="gift-emoji">👜</span>
+        <span class="gift-name">Bolsa feminina</span>
+        <span class="gift-desc">Estilo e elegância para o dia a dia</span>
+      </div>
+
+      <div class="gift-item">
+        <span class="gift-emoji">💄</span>
+        <span class="gift-name">Kit de maquiagem</span>
+        <span class="gift-desc">Paleta de sombras ou batom</span>
+      </div>
+
+      <div class="gift-item">
+        <span class="gift-emoji">📚</span>
+        <span class="gift-name">Livros</span>
+        <span class="gift-desc">Romances, fantasia ou autoconhecimento</span>
+      </div>
+
+      <div class="gift-item">
+        <span class="gift-emoji">🌸</span>
+        <span class="gift-name">Perfume</span>
+        <span class="gift-desc">Fragrância floral ou frutada</span>
+      </div>
+
+      <div class="gift-item">
+        <span class="gift-emoji">💅</span>
+        <span class="gift-name">Spa day</span>
+        <span class="gift-desc">Vale presente de salão ou spa</span>
+      </div>
+
+      <div class="gift-item">
+        <span class="gift-emoji">💍</span>
+        <span class="gift-name">Bijuterias</span>
+        <span class="gift-desc">Brincos, colares e anéis delicados</span>
+      </div>
+
+      <div class="gift-item">
+        <span class="gift-emoji">👟</span>
+        <span class="gift-name">Tênis / Sandália</span>
+        <span class="gift-desc">Números 37 (favor confirmar)</span>
+      </div>
+
+      <div class="gift-item">
+        <span class="gift-emoji">🎀</span>
+        <span class="gift-name">Surpresa!</span>
+        <span class="gift-desc">Qualquer presente dado com amor</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
