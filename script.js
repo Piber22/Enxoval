@@ -1,258 +1,237 @@
-/* ═══════════════════════════════════
-   ALICE IN WONDERLAND INVITATION JS
-═══════════════════════════════════ */
-
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ─── Particles on envelope screen ───
-  const container = document.querySelector('.floating-particles');
-  const colors = ['#c8667a', '#5b9ea0', '#c9a96e', '#a880d0', '#f5a0b8'];
-  for (let i = 0; i < 30; i++) {
+  /* ── ENV PARTICLES ── */
+  const pCont = document.querySelector('.env-particles');
+  const pColors = ['#00d4ff','#0080aa','#c8667a','#c9a96e','#80c0e8'];
+  for (let i = 0; i < 28; i++) {
     const p = document.createElement('div');
-    p.className = 'particle';
+    p.className = 'env-p';
     p.style.cssText = `
-      left: ${Math.random() * 100}%;
-      background: ${colors[Math.floor(Math.random() * colors.length)]};
-      width: ${4 + Math.random() * 6}px;
-      height: ${4 + Math.random() * 6}px;
-      --dur: ${4 + Math.random() * 6}s;
-      --delay: ${Math.random() * 4}s;
+      left:${Math.random()*100}%;
+      width:${3+Math.random()*5}px;height:${3+Math.random()*5}px;
+      background:${pColors[Math.floor(Math.random()*pColors.length)]};
+      --d:${4+Math.random()*6}s;--dl:${Math.random()*5}s;
     `;
-    container.appendChild(p);
+    pCont.appendChild(p);
   }
 
-  // ─── Envelope open sequence ───
-  const envelope = document.querySelector('.envelope-wrapper');
-  const envelopeScreen = document.getElementById('envelope-screen');
-  const mainContent = document.getElementById('main-content');
+  /* ── ENVELOPE OPEN ── */
+  const envWrap = document.querySelector('.env-wrap');
+  const envScreen = document.getElementById('envelope-screen');
+  const main = document.getElementById('main-content');
   let opened = false;
 
-  function openEnvelope() {
+  function openEnv() {
     if (opened) return;
     opened = true;
-
-    envelope.classList.add('opening');
-
+    envWrap.classList.add('opening');
     setTimeout(() => {
-      envelopeScreen.style.transition = 'opacity 1.2s ease';
-      envelopeScreen.style.opacity = '0';
-      mainContent.classList.add('visible');
-    }, 1800);
-
+      envScreen.style.transition = 'opacity 1.2s ease';
+      envScreen.style.opacity = '0';
+      main.classList.add('visible');
+    }, 1900);
     setTimeout(() => {
-      envelopeScreen.style.display = 'none';
+      envScreen.style.display = 'none';
       fireConfetti();
-    }, 3000);
+    }, 3100);
   }
 
-  envelope.addEventListener('click', openEnvelope);
-  envelope.addEventListener('touchstart', openEnvelope, { passive: true });
+  envWrap.addEventListener('click', openEnv);
+  envWrap.addEventListener('touchstart', openEnv, { passive: true });
+  setTimeout(() => { if (!opened) openEnv(); }, 4200);
 
-  // Auto-open after 4s if user doesn't tap
-  setTimeout(() => { if (!opened) openEnvelope(); }, 4000);
-
-  // ─── Confetti ───
+  /* ── CONFETTI ── */
   function fireConfetti() {
-    const colors = ['#c8667a', '#5b9ea0', '#c9a96e', '#a880d0', '#f5a0b8', '#e8d5b0', '#5b9ea0'];
-    for (let i = 0; i < 60; i++) {
-      const piece = document.createElement('div');
-      piece.className = 'confetti-piece';
-      const isHeart = Math.random() > 0.6;
-      if (isHeart) {
-        piece.style.width = '12px';
-        piece.style.height = '12px';
-        piece.style.borderRadius = '0';
-        piece.innerHTML = ['🌸', '🌷', '✨', '🫧', '🌺'][Math.floor(Math.random() * 5)];
-        piece.style.background = 'none';
-        piece.style.fontSize = '14px';
+    const cols = ['#00d4ff','#c8667a','#c9a96e','#80a0ff','#a0e0f0','#e0a0c0'];
+    const emojis = ['🌸','✨','🐇','💙','🌀','⭐'];
+    for (let i = 0; i < 55; i++) {
+      const pc = document.createElement('div');
+      pc.className = 'cpiece';
+      const isEmoji = Math.random() > .55;
+      if (isEmoji) {
+        pc.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+        pc.style.fontSize = '14px';
+        pc.style.background = 'none';
+      } else {
+        pc.style.width = `${5+Math.random()*5}px`;
+        pc.style.height = `${5+Math.random()*5}px`;
+        pc.style.borderRadius = Math.random()>.5 ? '50%' : '0';
+        pc.style.background = cols[Math.floor(Math.random()*cols.length)];
       }
-      piece.style.cssText += `
-        left: ${Math.random() * 100}vw;
-        top: -10px;
-        background: ${isHeart ? 'none' : colors[Math.floor(Math.random() * colors.length)]};
-        --dur: ${2 + Math.random() * 3}s;
-        --delay: ${Math.random() * 2}s;
-        --drift: ${(Math.random() - 0.5) * 200}px;
-      `;
-      document.body.appendChild(piece);
-      setTimeout(() => piece.remove(), 6000);
+      pc.style.left = `${Math.random()*100}vw`;
+      pc.style.top = '-12px';
+      pc.style.setProperty('--d', `${2+Math.random()*3}s`);
+      pc.style.setProperty('--dl', `${Math.random()*1.8}s`);
+      pc.style.setProperty('--dr', `${(Math.random()-.5)*180}px`);
+      document.body.appendChild(pc);
+      setTimeout(() => pc.remove(), 6000);
     }
   }
 
-  // ─── Scroll reveal ───
-  const revealEls = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
+  /* ── PARALLAX ── */
+  const layerBg  = document.querySelector('.layer-bg');
+  const layerFog = document.querySelector('.layer-fog');
+
+  function handleParallax(e) {
+    let tiltX, tiltY;
+    if (e.type === 'deviceorientation') {
+      tiltX = (e.gamma || 0) / 30;   // -1 to 1
+      tiltY = ((e.beta  || 0) - 20) / 40;
+    } else {
+      const rect = document.querySelector('.hero').getBoundingClientRect();
+      tiltX = ((e.clientX - window.innerWidth/2) / window.innerWidth) * 2;
+      tiltY = ((e.clientY - rect.top - rect.height/2) / rect.height) * 2;
+    }
+    const s1 = 14; const s2 = 6;
+    layerBg .style.transform = `translate(${tiltX*s1}px, ${tiltY*s1}px) scale(1.18)`;
+    layerFog.style.transform = `translate(${tiltX*s2}px, ${tiltY*s2}px) scale(1.09)`;
+  }
+
+  // Gyroscope (mobile)
+  if (typeof DeviceOrientationEvent !== 'undefined' &&
+      typeof DeviceOrientationEvent.requestPermission === 'function') {
+    // iOS 13+ – request on first touch
+    document.addEventListener('touchstart', () => {
+      DeviceOrientationEvent.requestPermission().then(state => {
+        if (state === 'granted') window.addEventListener('deviceorientation', handleParallax);
+      }).catch(() => {});
+    }, { once: true });
+  } else if (window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', handleParallax);
+  }
+
+  // Fallback: touch drag
+  let lastTouch = null;
+  document.querySelector('.hero')?.addEventListener('touchmove', e => {
+    const t = e.touches[0];
+    if (!lastTouch) { lastTouch = t; return; }
+    const fakeE = {
+      type: 'mousemove',
+      clientX: t.clientX,
+      clientY: t.clientY
+    };
+    handleParallax(fakeE);
+    lastTouch = t;
+  }, { passive: true });
+
+  // Mouse (desktop preview)
+  document.querySelector('.hero')?.addEventListener('mousemove', handleParallax);
+
+  /* ── SCROLL REVEAL ── */
+  const revEls = document.querySelectorAll('.reveal');
+  const ro = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.classList.add('visible');
-        revealObserver.unobserve(e.target);
+        ro.unobserve(e.target);
       }
     });
-  }, { threshold: 0.15 });
-  revealEls.forEach(el => revealObserver.observe(el));
+  }, { threshold: .14 });
+  revEls.forEach(el => ro.observe(el));
 
-  // ─── Staggered reveals for info cards ───
-  document.querySelectorAll('.info-card').forEach((card, i) => {
-    card.style.transitionDelay = `${i * 0.12}s`;
+  // Stagger info cards
+  document.querySelectorAll('.info-card').forEach((c,i) => {
+    c.style.transitionDelay = `${i*0.1}s`;
   });
-  document.querySelectorAll('.manual-item').forEach((item, i) => {
-    item.classList.add('reveal');
-    item.style.transitionDelay = `${i * 0.1}s`;
-    revealObserver.observe(item);
+  document.querySelectorAll('.manual-item').forEach((m,i) => {
+    m.classList.add('reveal');
+    m.style.transitionDelay = `${i*0.08}s`;
+    ro.observe(m);
   });
 
-  // ─── PIX Modal ───
-  const pixBtn = document.getElementById('btn-pix');
+  /* ── PIX MODAL ── */
   const pixModal = document.getElementById('modal-pix');
-  const pixClose = document.getElementById('close-pix');
-  const copyBtn = document.getElementById('copy-pix');
-
-  pixBtn.addEventListener('click', () => {
-    document.body.classList.add('modal-open');
+  document.getElementById('btn-pix').addEventListener('click', () => {
+    document.body.classList.add('no-scroll');
     pixModal.classList.add('open');
-    generateQR();
+    genQR();
   });
+  document.getElementById('close-pix').addEventListener('click', () => closeModal(pixModal));
+  pixModal.addEventListener('click', e => { if(e.target===pixModal) closeModal(pixModal); });
 
-  pixClose.addEventListener('click', closePixModal);
-  pixModal.addEventListener('click', (e) => {
-    if (e.target === pixModal) closePixModal();
-  });
-
-  function closePixModal() {
-    pixModal.classList.remove('open');
-    document.body.classList.remove('modal-open');
-  }
-
-  let qrGenerated = false;
-  function generateQR() {
-    if (qrGenerated) return;
-    qrGenerated = true;
+  let qrDone = false;
+  function genQR() {
+    if (qrDone) return;
+    qrDone = true;
     const canvas = document.getElementById('qr-canvas');
     if (window.QRCode) {
-      QRCode.toCanvas(canvas, '00020126360014BR.GOV.BCB.PIX0114+5551999999992204Presente5204000053039865406100.005802BR5913Isabela Festa6009SAO PAULO62070503***6304ABCD', {
-        width: 180,
-        margin: 1,
-        color: { dark: '#2d1a2e', light: '#fffdf8' }
-      }, () => {});
+      QRCode.toCanvas(canvas,
+        '00020126360014BR.GOV.BCB.PIX0114+5551992906115520400005303986540650.005802BR5907Isabela6009VIAM%C3%83O62070503***6304ABCD',
+        { width: 166, margin: 1, color: { dark: '#07080d', light: '#ffffff' } },
+        () => {}
+      );
     } else {
-      // Fallback visual QR placeholder
-      drawPlaceholderQR(canvas);
+      drawFallbackQR(canvas);
     }
   }
 
-  function drawPlaceholderQR(canvas) {
-    canvas.width = 180;
-    canvas.height = 180;
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#fffdf8';
-    ctx.fillRect(0, 0, 180, 180);
-    // Draw a simple QR-like pattern
-    ctx.fillStyle = '#2d1a2e';
-    const size = 9;
-    const pattern = [
-      [1,1,1,1,1,1,1,0,1,0,1,0,0,0,1,1,1,1,1,1,1],
-      [1,0,0,0,0,0,1,0,1,1,0,0,1,0,1,0,0,0,0,0,1],
-      [1,0,1,1,1,0,1,0,0,1,1,0,0,0,1,0,1,1,1,0,1],
-      [1,0,1,1,1,0,1,0,1,0,1,1,1,0,1,0,1,1,1,0,1],
-      [1,0,1,1,1,0,1,0,0,0,0,1,0,0,1,0,1,1,1,0,1],
-      [1,0,0,0,0,0,1,0,1,1,0,1,1,0,1,0,0,0,0,0,1],
-      [1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1],
-      [0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0],
-      [1,0,1,1,0,1,1,0,1,0,1,1,0,0,1,0,1,1,0,1,0],
-      [0,1,1,0,1,0,0,1,0,1,0,1,1,0,0,1,1,0,1,0,1],
-      [1,0,0,0,1,1,1,0,1,0,1,1,0,0,1,0,0,0,1,1,0],
-      [0,0,1,0,0,1,0,1,0,1,0,1,1,0,0,1,0,1,0,0,1],
-      [1,1,0,1,0,0,1,0,1,0,1,1,0,0,1,1,0,0,0,1,0],
-      [0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,1,0,1,0,0],
-      [1,1,1,1,1,1,1,0,0,1,1,0,1,0,1,0,1,1,1,0,1],
-      [1,0,0,0,0,0,1,0,1,0,0,1,0,0,0,1,1,0,0,1,0],
-      [1,0,1,1,1,0,1,0,0,1,1,1,1,0,1,0,0,0,1,0,1],
-      [1,0,1,1,1,0,1,0,1,0,0,1,0,0,0,1,0,1,0,0,0],
-      [1,0,1,1,1,0,1,0,0,1,1,1,1,0,1,1,1,0,1,1,1],
-      [1,0,0,0,0,0,1,0,1,0,0,1,0,0,0,0,1,1,0,0,0],
-      [1,1,1,1,1,1,1,0,0,1,1,0,1,0,1,0,0,0,1,1,0],
-    ];
-    pattern.forEach((row, r) => {
-      row.forEach((cell, c) => {
-        if (cell) ctx.fillRect(c * size, r * size, size - 1, size - 1);
-      });
+  function drawFallbackQR(c) {
+    c.width = 166; c.height = 166;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0,0,166,166);
+    ctx.fillStyle = '#07080d';
+    // draw finder patterns
+    [[2,2],[2,12],[12,2]].forEach(([ox,oy]) => {
+      ctx.fillRect(ox*8,oy*8,56,56);
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(ox*8+8,oy*8+8,40,40);
+      ctx.fillStyle = '#07080d';
+      ctx.fillRect(ox*8+16,oy*8+16,24,24);
     });
+    // data modules (decorative)
+    const seed = [1,0,1,1,0,1,0,1,1,0,1,0,0,1,1,0,1,1,0,1];
+    for (let r=0;r<20;r++) for (let c2=0;c2<20;c2++) {
+      if (r<8&&(c2<8||c2>12)) continue;
+      if (r>12&&c2<8) continue;
+      if ((seed[(r+c2)%seed.length]^seed[(r*c2+3)%seed.length])===1)
+        ctx.fillRect(c2*8+3,r*8+3,6,6);
+    }
   }
 
-  copyBtn.addEventListener('click', () => {
-    const key = '(51) 99290-6115';
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(key).then(() => {
-        copyBtn.textContent = '✓ Chave copiada!';
-        setTimeout(() => copyBtn.textContent = 'Copiar chave Pix', 2000);
-      });
-    } else {
-      copyBtn.textContent = '✓ Chave copiada!';
-      setTimeout(() => copyBtn.textContent = 'Copiar chave Pix', 2000);
-    }
+  document.getElementById('copy-pix').addEventListener('click', function() {
+    const key = '51992906115';
+    navigator.clipboard?.writeText(key).catch(()=>{});
+    this.textContent = '✓  CHAVE COPIADA!';
+    setTimeout(() => this.textContent = 'COPIAR CHAVE PIX', 2200);
   });
 
-  // ─── Gifts Modal ───
-  const giftsBtn = document.getElementById('btn-gifts');
+  /* ── GIFTS MODAL ── */
   const giftsModal = document.getElementById('modal-gifts');
-  const giftsClose = document.getElementById('close-gifts');
-
-  giftsBtn.addEventListener('click', () => {
-    document.body.classList.add('modal-open');
+  document.getElementById('btn-gifts').addEventListener('click', () => {
+    document.body.classList.add('no-scroll');
     giftsModal.classList.add('open');
   });
-  giftsClose.addEventListener('click', () => {
-    giftsModal.classList.remove('open');
-    document.body.classList.remove('modal-open');
-  });
-  giftsModal.addEventListener('click', (e) => {
-    if (e.target === giftsModal) {
-      giftsModal.classList.remove('open');
-      document.body.classList.remove('modal-open');
-    }
-  });
+  document.getElementById('close-gifts').addEventListener('click', () => closeModal(giftsModal));
+  giftsModal.addEventListener('click', e => { if(e.target===giftsModal) closeModal(giftsModal); });
 
-  // ─── Twinkling stars in thanks section ───
-  const starsContainer = document.querySelector('.thanks-stars');
-  if (starsContainer) {
-    for (let i = 0; i < 50; i++) {
-      const star = document.createElement('div');
-      star.className = 'thanks-star';
-      const op = 0.1 + Math.random() * 0.5;
-      star.style.cssText = `
-        left: ${Math.random() * 100}%;
-        top: ${Math.random() * 100}%;
-        width: ${1 + Math.random() * 3}px;
-        height: ${1 + Math.random() * 3}px;
-        --op: ${op};
-        --dur: ${2 + Math.random() * 4}s;
-        --delay: ${Math.random() * 3}s;
+  function closeModal(m) {
+    m.classList.remove('open');
+    document.body.classList.remove('no-scroll');
+  }
+
+  /* ── STARS IN THANKS ── */
+  const starsEl = document.querySelector('.thanks-stars');
+  if (starsEl) {
+    for (let i=0;i<55;i++) {
+      const s = document.createElement('div');
+      s.className = 'tstar';
+      const op = .08 + Math.random()*.45;
+      const sz = 1 + Math.random()*2.5;
+      s.style.cssText = `
+        left:${Math.random()*100}%;top:${Math.random()*100}%;
+        width:${sz}px;height:${sz}px;
+        --op:${op};--d:${2+Math.random()*5}s;--dl:${Math.random()*3}s;
       `;
-      starsContainer.appendChild(star);
+      starsEl.appendChild(s);
     }
   }
 
-  // ─── Page decorations ───
-  const decoContainer = document.getElementById('main-content');
-  const decoEmojis = ['🐇', '🎂', '🌹', '⭐', '🎀', '🌸', '🫧', '🌺', '✨'];
-  decoEmojis.forEach((emoji, i) => {
-    const d = document.createElement('div');
-    d.className = 'page-decoration';
-    d.textContent = emoji;
-    d.style.cssText = `
-      top: ${10 + i * 12}%;
-      ${i % 2 === 0 ? 'left: 2%' : 'right: 2%'};
-      --dur: ${6 + i * 1.5}s;
-      --delay: ${i * 0.5}s;
-    `;
-    decoContainer.appendChild(d);
-  });
-
-  // ─── Heartbeat on confirm button ───
+  /* ── CONFIRM BUTTON PULSE ── */
   const confirmBtn = document.getElementById('btn-confirm');
   setInterval(() => {
-    confirmBtn.style.transform = 'scale(1.03)';
-    setTimeout(() => confirmBtn.style.transform = 'scale(1)', 150);
-  }, 3000);
+    confirmBtn.style.boxShadow = '0 0 30px rgba(0,212,255,0.3)';
+    setTimeout(() => confirmBtn.style.boxShadow = '', 300);
+  }, 3500);
 
 });
